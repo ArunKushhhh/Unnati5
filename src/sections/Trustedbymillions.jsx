@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import _ScrollTrigger, { ScrollTrigger } from "gsap/ScrollTrigger";
 import { images } from "../assets/images";
+import { useGSAP } from "@gsap/react";
+import IconAnimation from "./IconAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +18,8 @@ function Trustedbymillions() {
   ];
 
   const imageRefs = useRef([]);
+  const fullRef = useRef(null);
+  const mainContainerRef = useRef(null); // Add this for the entire section
 
   const imagePairs = [
     [images.image1, images.image1c],
@@ -32,83 +36,62 @@ function Trustedbymillions() {
     [images.image12, images.image12c],
   ];
 
-  useEffect(() => {
-    imageRefs.current.forEach((img, i) => {
-      const [normal, changed] = imagePairs[i];
+  // const wrapperRef = useRef(null);
 
-      ScrollTrigger.create({
-        trigger: img,
-        start: "top 80%",
-        end: "top 30%",
-        onEnter: () => (img.src = changed),
-        onLeaveBack: () => (img.src = normal),
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   if (!wrapperRef.current) return;
 
-  const positions = [
-    "row-start-1 col-start-1",
-    "row-start-1 col-start-8",
-    "row-start-2 col-start-1",
-    "row-start-2 col-start-2",
-    "row-start-2 col-start-7",
-    "row-start-2 col-start-8",
-    "row-start-3 col-start-1",
-    "row-start-3 col-start-2",
-    "row-start-3 col-start-3",
-    "row-start-3 col-start-6",
-    "row-start-3 col-start-7",
-    "row-start-3 col-start-8",
-  ];
+  //   const wrapperWidth = wrapperRef.current.scrollWidth / 3;
 
-  const wrapperRef = useRef(null);
+  //   gsap.to(wrapperRef.current, {
+  //     x: `-${wrapperWidth}px`,
+  //     duration: 10,
+  //     repeat: -1,
+  //     ease: "linear",
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    if (!wrapperRef.current) return;
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-    const wrapperWidth = wrapperRef.current.scrollWidth / 3;
-
-    gsap.to(wrapperRef.current, {
-      x: `-${wrapperWidth}px`,
-      duration: 10,
-      repeat: -1,
-      ease: "linear",
-    });
-  }, []);
-
-useEffect(() => {
-  gsap.fromTo(
-    "li",
-    {
-      y: 5,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      stagger: 0.3,
-
+    // Pin the entire main container, not just the content
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: "ul",        
-        start: "top 90%",      
-        end: "bottom 20%",     
-        toggleActions: "play none none reset", 
-        markers: false,  
-        once: false, 
-      },
-    }
-  );
-}, []);
+        trigger: mainContainerRef.current,
+        pin: mainContainerRef.current, // Pin the entire section
+        start: "30% center",
+        end: "bottom center", // Longer scroll distance
+        scrub: 1,
+        anticipatePin: 1,
+        markers: true,
+        pinSpacing: true,
+      }
+    });
 
+    // Add bullet point animation to the timeline
+    tl.fromTo("li", 
+      {
+        y: 5,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power2.out"
+      }
+    );
+
+  }, { scope: mainContainerRef });
 
   return (
-    <div className="max-w-screen mb-32">
-      <div className="flex justify-center items-start mb-10">
+    <div ref={mainContainerRef} className="h-[300px] w-full">
+      {/* <div className="flex justify-center items-start mb-10 pt-10">
         <h3>Trusted by millions</h3>
       </div>
 
-      <div className="overflow-hidden w-full">
+      <div className="overflow-hidden w-full mb-20">
         <div
           ref={wrapperRef}
           className="companies-wrapper flex gap-20 text-2xl text-gray-300 whitespace-nowrap"
@@ -141,16 +124,19 @@ useEffect(() => {
           <div>HASHICORP</div>
           <div>INTERCOM</div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="relative z-0 flex flex-col items-center justify-center px-16 gap-5 mt-40">
+      <div
+        ref={fullRef}
+        className="relative z-0 flex flex-col items-center justify-center px-16 gap-5  flex-1"
+      >
         <h1 className="text-3xl md:text-5xl font-bold text-center">
           The old way of
           <br />
           working
         </h1>
         <ul className="md:text-base text-[13px] text-nowrap flex flex-col gap-2">
-          {bulletPoints.map((text, i) => ( 
+          {bulletPoints.map((text, i) => (
             <li key={i}>
               <span className="bg-pink-500 rounded-3xl inline-flex w-6 h-6 justify-center text-white mr-3 items-center">
                 x
@@ -159,19 +145,8 @@ useEffect(() => {
             </li>
           ))}
         </ul>
-
-       {/*  <div className="absolute top-0 left-1/2 -translate-x-1/2 grid auto-rows-max grid-cols-[repeat(auto-fit,minmax(6rem,1fr))] max-w-[90vw] gap-4 z-10">
-          {imagePairs.map(([normal], i) => (
-            <img
-              key={i}
-              ref={(el) => (imageRefs.current[i] = el)}
-              src={normal}
-              alt=""
-              className={`${positions[i]} w-24 h-24 bg-white p-2 rounded-2xl transition-all duration-500`}
-            />
-          ))}
-        </div> */}
       </div>
+      <IconAnimation/>
     </div>
   );
 }

@@ -10,16 +10,20 @@ import Trustedbymillions from "./sections/Trustedbymillions";
 import NewWay from "./sections/NewWay";
 import Footer from "./sections/Footer";
 import Days from "./sections/Days";
+import IconAnimation from "./sections/IconAnimation";
+import Trusted from "./sections/Trusted";
 
 
 
 
 const App = () => {
   return (
-    <div className=" h-full flex flex-col w-full items-center overflow-x-hidden">
+    <div className=" h-full flex flex-col w-full items-center overflow-x-hidden relative">
       {/* <Navbar/> */}
       <Hero />
+      <Trusted/>
       <Trustedbymillions/>
+      <IconAnimation/>  
       <NewWay/>
       <Comments/>
       <Gallery/>
