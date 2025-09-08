@@ -10,7 +10,7 @@ function Glassbox({
 }) {
   return (
     <div 
-      className={`flex flex-col min-w-[180px] w-[180px] lg:w-[245px] max-w-[245px] min-h-[120px] p-4 rounded-xl cursor-pointer transition-all duration-300 ${
+      className={`flex flex-col min-w-[180px] sm:w-[180px] lg:w-[245px] max-w-[245px] min-h-[120px] p-4 rounded-xl cursor-pointer transition-all duration-300 ${
         isActive 
           ? 'bg-white text-black scale-105 border border-[rgba(80,230,203,0.3)] shadow-lg' 
           : 'bg-[rgba(255,255,255,.12)] text-[#d6d3d3aa] hover:bg-[rgba(255,255,255,.18)]'

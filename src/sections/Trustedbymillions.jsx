@@ -102,7 +102,7 @@ function Trustedbymillions() {
   }, []);
 
   return (
-    <div className="max-w-screen mb-32 pt-8">
+    <div id="routine" className="max-w-screen mb-32 pt-8">
       <div className="overflow-hidden w-full">
         <div
           ref={wrapperRef}

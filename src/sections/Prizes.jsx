@@ -45,16 +45,23 @@ const Prizes = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Only enable scroll animations on desktop
+      const isDesktop = window.innerWidth >= 1024;
+      
+      if (!isDesktop) {
+        // For mobile/tablet, just show all content statically
+        setupStaticDisplay();
+        return;
+      }
+
       // Calculate the proper end point for pinning
       const calculateEndPoint = () => {
         const mainContainerHeight = mainContainerRef.current.offsetHeight;
         const contentContainerHeight = contentContainerRef.current.offsetHeight;
         const viewportHeight = window.innerHeight;
 
-        // Pin should start when bottom of contentContainer hits bottom of screen
-        // Pin should end when we've scrolled enough for contentContainer bottom to align with prizes section bottom
         const scrollDistanceNeeded =
-          mainContainerHeight - contentContainerHeight - viewportHeight + 235; // Extra 200px for some buffer
+          mainContainerHeight - contentContainerHeight - viewportHeight + 330;
 
         return `+=${scrollDistanceNeeded}px`;
       };
@@ -62,7 +69,7 @@ const Prizes = () => {
       // Pin the content container within the main container
       ScrollTrigger.create({
         trigger: contentContainerRef.current,
-        start: "bottom bottom", // Start pinning when bottom of content hits bottom of viewport
+        start: "bottom bottom",
         end: calculateEndPoint,
         pin: true,
         scrub: 1,
@@ -74,43 +81,37 @@ const Prizes = () => {
           // Update scroller indicators
           scrollerRefs.current.forEach((scroller, index) => {
             if (index === currentPrize) {
-              // Current active prize - animate height based on progress
-              const height = 0.375 + 6.625 * localProgress; // 0.375rem (h-1.5) to 7rem (h-28)
+              const height = 0.375 + 6.625 * localProgress;
               gsap.set(scroller, {
                 height: `${height}rem`,
-                width: "0.375rem", // w-1.5
-                backgroundColor: "rgb(168 85 247)", // purple-500
+                width: "0.375rem",
+                backgroundColor: "rgb(168 85 247)",
                 opacity: 1,
               });
             } else {
-              // All other prizes (both completed and future) - small dots
               gsap.set(scroller, {
-                height: "0.375rem", // h-1.5 equivalent
-                width: "0.375rem", // w-1.5 equivalent
+                height: "0.375rem",
+                width: "0.375rem",
                 backgroundColor:
                   index < currentPrize
-                    ? "rgb(168 85 247)" // Completed prizes - full color
-                    : "rgb(168 85 247 / 0.5)", // Future prizes - reduced opacity
+                    ? "rgb(168 85 247)"
+                    : "rgb(168 85 247 / 0.5)",
                 opacity: index < currentPrize ? 1 : 0.5,
               });
             }
           });
 
-          // Update content based on current prize
           updateContent(currentPrize);
         },
         onRefresh: () => {
-          // Recalculate end point on refresh/resize
           ScrollTrigger.getById("pinTrigger")?.refresh();
         },
         id: "pinTrigger",
       });
 
-      // Initial setup
       setupScrollers();
       updateContent(0);
 
-      // Handle resize events
       const handleResize = () => {
         ScrollTrigger.refresh();
       };
@@ -125,18 +126,23 @@ const Prizes = () => {
     return () => ctx.revert();
   }, []);
 
+  const setupStaticDisplay = () => {
+    // For mobile, show first prize by default
+    updateContent(0);
+  };
+
   const setupScrollers = () => {
     scrollerRefs.current.forEach((scroller, index) => {
       if (index === 0) {
         gsap.set(scroller, {
-          height: "7rem", // h-28 equivalent
+          height: "7rem",
           width: "0.375rem",
           backgroundColor: "rgb(168 85 247)",
           opacity: 1,
         });
       } else {
         gsap.set(scroller, {
-          height: "0.375rem", // h-1.5 equivalent
+          height: "0.375rem",
           width: "0.375rem",
           backgroundColor: "rgb(168 85 247 / 0.5)",
           opacity: 0.5,
@@ -145,20 +151,18 @@ const Prizes = () => {
     });
   };
 
-  // Helper function to convert Tailwind color classes to CSS color values
   const getColorFromClass = (colorClass) => {
     const colorMap = {
       "text-yellow-500": "rgb(234 179 8)",
       "text-[#6676D2]": "#6676D2",
       "text-[#E97D15]": "#E97D15",
     };
-    return colorMap[colorClass] || "rgb(234 179 8)"; // Default to yellow
+    return colorMap[colorClass] || "rgb(234 179 8)";
   };
 
   const updateContent = (prizeIndex) => {
     const currentPrize = Prize[prizeIndex];
 
-    // Update text content
     const titleElement = contentRef.current?.querySelector(".prize-title");
     const amountElement = contentRef.current?.querySelector(".prize-amount");
     const descriptionElement =
@@ -167,13 +171,11 @@ const Prizes = () => {
     if (titleElement) titleElement.textContent = currentPrize.position;
     if (amountElement) {
       amountElement.textContent = currentPrize.amount;
-      // Update the color dynamically
       amountElement.style.color = getColorFromClass(currentPrize.prizeColor);
     }
     if (descriptionElement)
       descriptionElement.textContent = currentPrize.description;
 
-    // Update prize boxes visibility/highlight
     const prizeBoxes = prizeBoxesRef.current?.querySelectorAll(".prize-box");
     prizeBoxes?.forEach((box, index) => {
       if (index === prizeIndex) {
@@ -196,28 +198,29 @@ const Prizes = () => {
 
   return (
     <div
+      id="prizes"
       ref={mainContainerRef}
-      className="bg-[#11001b] w-full flex flex-col gap-72 justify-start items-center pt-24"
-      style={{ height: "500vh" }} // Set explicit height for the main container
+      className="bg-[#11001b] w-full flex flex-col gap-12 md:gap-24 lg:gap-72 justify-start items-center pt-12 md:pt-16 lg:pt-24 px-4 md:px-8 pb-8 sm:pb-0"
+      style={{ height: window.innerWidth >= 1024 ? "500vh" : "auto" }}
     >
       {/* Header Section */}
-      <div className="text-left max-w-1/2 text-wrap flex flex-col gap-12">
-        <h1 className="font-primary text-8xl text-white">
-          Prizes Prizes Prizes Prizes
+      <div className="text-center lg:text-left max-w-full lg:max-w-1/2 text-wrap flex flex-col gap-6 md:gap-8 lg:gap-12">
+        <h1 className="font-primary text-[40px] sm:text-8xl text-white">
+          Prizes...
         </h1>
-        <h4 className="font-secondary text-white max-w-72 ml-24">
+        <h4 className="font-secondary text-white max-w-full lg:max-w-72 text-sm md:text-base lg:ml-24 mx-auto lg:mx-0">
           From brainstorm to launch—create, plan, and communicate in one
           interconnected workspace.
         </h4>
       </div>
 
-      {/* Main Content Section with Additional Ref */}
+      {/* Main Content Section */}
       <div
         ref={contentContainerRef}
-        className="w-full flex justify-around items-center"
+        className="w-full flex flex-col lg:flex-row justify-around items-center gap-12 lg:gap-0"
       >
-        {/* Scroller Section */}
-        <div className="flex gap-6">
+        {/* Scroller Section - Hidden on mobile */}
+        <div className="hidden lg:flex gap-6">
           <div className="flex flex-col gap-1">
             {[0, 1, 2].map((index) => (
               <div
@@ -225,7 +228,7 @@ const Prizes = () => {
                 ref={(el) => (scrollerRefs.current[index] = el)}
                 className="rounded-full transition-all duration-300"
                 style={{
-                  height: index === 0 ? "7rem" : "0.375rem", // h-28 : h-1.5
+                  height: index === 0 ? "7rem" : "0.375rem",
                   width: "0.375rem",
                 }}
               />
@@ -242,62 +245,120 @@ const Prizes = () => {
             >
               ₹8,000
             </p>
-            <p className="prize-description text-xl max-w-sm text-white/50">
+            <p className="prize-description text-lg lg:text-xl max-w-sm text-white/50">
               Certificates, Badges, Bands and many more...
             </p>
           </div>
         </div>
 
-        {/* Prizes Display */}
-        <div className="relative h-[800px] w-1/2 z-10">
-          <div className="w-full h-full bg-white/14 rounded-t-3xl pt-4 pl-4 flex flex-col gap-4">
-            {/* Window nav buttons */}
-            <div className="flex gap-1.5">
-              <div className="w-4 h-4 rounded-full bg-red-400"></div>
-              <div className="w-4 h-4 rounded-full bg-yellow-400"></div>
-              <div className="w-4 h-4 rounded-full bg-green-400"></div>
-            </div>
+        
 
-            {/* Main content div */}
-            <div className="w-full h-full bg-gradient-to-r from-black to-[#11011d] flex flex-col gap-12 justify-center items-center rounded-tl-2xl">
-              <div
-                ref={prizeBoxesRef}
-                className="w-full flex gap-6 justify-center items-center"
-              >
-                <div className="prize-box">
-                  <PrizeBox
-                    gradientFrom="from-red-500"
-                    gradientTo="to-yellow-500"
-                    shadowColor="rgba(239,68,68,0.4)"
-                    image={Fprize}
-                    amount={Prize[0].amount}
-                    prizeColor={Prize[0].prizeColor}
-                  />
-                </div>
-                <div className="prize-box">
-                  <PrizeBox
-                    gradientFrom="from-white"
-                    gradientTo="to-[#6676D2]"
-                    image={Prize[1].image}
-                    amount={Prize[1].amount}
-                    prizeColor={Prize[1].prizeColor}
-                  />
-                </div>
-                <div className="prize-box">
-                  <PrizeBox
-                    gradientFrom="from-green-500"
-                    gradientTo="to-blue-500"
-                    shadowColor="rgba(59,130,246,0.4)"
-                    image={Prize[2].image}
-                    amount={Prize[2].amount}
-                    prizeColor={Prize[2].prizeColor}
-                  />
+        {/* Prizes Display */}
+        <div className="relative w-full lg:w-1/2 max-w-4xl">
+          {/* Desktop Layout */}
+          <div className="hidden lg:block relative h-[800px] z-10">
+            <div className="w-full h-full bg-white/14 rounded-t-3xl pt-4 pl-4 flex flex-col gap-4">
+              {/* Window nav buttons */}
+              <div className="flex gap-1.5">
+                <div className="w-4 h-4 rounded-full bg-red-400"></div>
+                <div className="w-4 h-4 rounded-full bg-yellow-400"></div>
+                <div className="w-4 h-4 rounded-full bg-green-400"></div>
+              </div>
+
+              {/* Main content div */}
+              <div className="w-full h-full bg-gradient-to-r from-black to-[#11011d] flex flex-col gap-12 justify-center items-center rounded-tl-2xl">
+                <div
+                  ref={prizeBoxesRef}
+                  className="w-full flex gap-6 justify-center items-center"
+                >
+                  {Prize.map((prize, index) => (
+                    <div key={prize.id} className="prize-box">
+                      <PrizeBox
+                        gradientFrom={
+                          index === 0
+                            ? "from-red-500"
+                            : index === 1
+                            ? "from-white"
+                            : "from-green-500"
+                        }
+                        gradientTo={
+                          index === 0
+                            ? "to-yellow-500"
+                            : index === 1
+                            ? "to-[#6676D2]"
+                            : "to-blue-500"
+                        }
+                        shadowColor={
+                          index === 0
+                            ? "rgba(239,68,68,0.4)"
+                            : index === 2
+                            ? "rgba(59,130,246,0.4)"
+                            : "rgba(168,85,247,0.4)"
+                        }
+                        image={prize.image}
+                        amount={prize.amount}
+                        prizeColor={prize.prizeColor}
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
+            {/* Background glow */}
+            <div className="absolute w-full h-full bg-blue-500/40 blur-3xl -z-10 -top-16 -left-32"></div>
           </div>
-          {/* Background glow */}
-          <div className="absolute w-full h-full bg-blue-500/40 blur-3xl -z-10 -top-16 -left-32"></div>
+
+          {/* Mobile/Tablet Layout */}
+          <div className="lg:hidden">
+            {/* Single row on tablet, stack on mobile */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {Prize.map((prize, index) => (
+                <div key={prize.id} className="flex flex-col items-center">
+                  {/* Prize info above each box on mobile */}
+                  <div className="text-center mb-4 sm:hidden">
+                    <h3 className="text-white font-bold text-lg">{prize.position}</h3>
+                    <p className="text-2xl font-bold" style={{ color: getColorFromClass(prize.prizeColor) }}>
+                      {prize.amount}
+                    </p>
+                    <p className="text-white/60 text-sm">{prize.description}</p>
+                  </div>
+                  
+                  <PrizeBox
+                    gradientFrom={
+                      index === 0
+                        ? "from-red-500"
+                        : index === 1
+                        ? "from-white"
+                        : "from-green-500"
+                    }
+                    gradientTo={
+                      index === 0
+                        ? "to-yellow-500"
+                        : index === 1
+                        ? "to-[#6676D2]"
+                        : "to-blue-500"
+                    }
+                    shadowColor={
+                      index === 0
+                        ? "rgba(239,68,68,0.4)"
+                        : index === 2
+                        ? "rgba(59,130,246,0.4)"
+                        : "rgba(168,85,247,0.4)"
+                    }
+                    image={prize.image}
+                    amount={prize.amount}
+                    prizeColor={prize.prizeColor}
+                  />
+
+                  {/* Prize info below each box on tablet */}
+                  <div className="hidden sm:block lg:hidden text-center mt-4">
+                    <h3 className="text-white font-bold text-lg">{prize.position}</h3>
+                    <p className="text-white/60 text-sm mt-1">{prize.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

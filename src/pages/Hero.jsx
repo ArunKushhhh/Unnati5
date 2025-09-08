@@ -230,7 +230,7 @@ function Hero() {
           <div className="md:hidden w-full">
             <div
               ref={mobileContainerRef}
-              className="flex flex-row gap-4 overflow-x-auto scroll-smooth px-4 py-4"
+              className="flex flex-col justify-center items-center sm:flex-row gap-4 overflow-x-auto scroll-smooth px-4 py-4"
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",

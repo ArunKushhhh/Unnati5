@@ -2,7 +2,7 @@ import React from 'react'
 
 const Details = () => {
   return (
-    <div className='w-full flex justify-center items-center'>
+    <div className='w-full hidden sm:flex justify-center items-center'>
       <div className="relative h-[600px] w-[90%] lg:w-1/2 z-10">
           <div className="w-full h-full bg-white/14 rounded-3xl py-4 px-4 flex flex-col gap-4">
             <div className="flex gap-1.5"> 

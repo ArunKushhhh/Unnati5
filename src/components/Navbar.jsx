@@ -10,12 +10,12 @@ const navItems = [
     id: "#home",
   },
   {
-    name: "Dates",
-    id: "#dates",
+    name: "Usual College Routine",
+    id: "#routine",
   },
   {
-    name: "FAQs",
-    id: "#faq",
+    name: "Escape",
+    id: "#clutter",
   },
   {
     name: "Prizes",
@@ -26,19 +26,50 @@ const navItems = [
     id: "#rules",
   },
   {
-    name: "Team",
-    chevron: true,
-    id: "#team",
+    name: "FAQs",
+    id: "#faq",
   },
-  {
-    name: "Gallery",
-    id: "#gallery",
-  },
+  // {
+  //   name: "Team",
+  //   chevron: true,
+  //   id: "#team",
+  // },
+  // {
+  //   name: "Gallery",
+  //   id: "#gallery",
+  // },
 ];
 
 const Navbar = () => {
   const handleContactUs = () => {
     window.location.href = "mailto:ecellait@gmail.com";
+  };
+
+  const handleScrollToSection = (sectionId) => {
+    // Remove the # from the id to get the element ID
+    const elementId = sectionId.substring(1);
+    const element = document.getElementById(elementId);
+
+    if (element) {
+      // Calculate offset to account for sticky navbar
+      const navbarHeight = 100; // Adjust this value based on your navbar height + desired spacing
+      const elementPosition =
+        element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    } else {
+      // Fallback: scroll to top if element not found and id is #home
+      if (sectionId === "#home") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    }
   };
 
   return (
@@ -51,18 +82,22 @@ const Navbar = () => {
             <div
               className="flex items-center gap-2 cursor-pointer hover:bg-slate-100 px-4 py-3 rounded-md transition-all duration-300 group"
               key={item.id}
+              onClick={() => handleScrollToSection(item.id)}
             >
               {item.name}
 
               {item.chevron && (
-                <ChevronDown className="text-slate-400 group-hover:rotate-180 transition-all duration-300" size={14} />
+                <ChevronDown
+                  className="text-slate-400 group-hover:rotate-180 transition-all duration-300"
+                  size={14}
+                />
               )}
             </div>
           ))}
         </nav>
       </div>
       <div className="flex items-center justify-center gap-4">
-        <div 
+        <div
           onClick={handleContactUs}
           className="hidden md:flex bg-none hover:bg-slate-100 px-4 py-3 rounded-md transition-all duration-300 cursor-pointer font-medium"
         >
@@ -77,7 +112,7 @@ const Navbar = () => {
           py={"py-3"}
         />
         <Button
-          label={"Visit I&E Cell"}
+          label={"I&E Cell"}
           showChevron={true}
           btnbg={"bg-black"}
           textColor={"text-white"}

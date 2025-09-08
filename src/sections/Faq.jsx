@@ -155,7 +155,7 @@ function Faq() {
   };
 
   return (
-    <div ref={containerRef} className="py-20 px-4  min-h-screen">
+    <div id="faq" ref={containerRef} className="py-20 px-4  min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="faq-header text-center mb-16">
           <h2 className="font-primary font-bold text-[#250835] text-[clamp(40px,8vw,4rem)] leading-[95%] mb-4">
@@ -236,7 +236,7 @@ function Faq() {
                     is here to help you get the most out of Whimsical.
                   </p>
 
-                  <div className="flex gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <button 
                       onClick={handleDownloadRulebook}
                       className="bg-white text-purple-700 font-semibold px-10 py-5 rounded-2xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-lg"

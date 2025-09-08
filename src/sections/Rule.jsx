@@ -7,7 +7,7 @@ function Rule() {
   };
 
   return (
-    <div className='bgpart mt-14 relative w-[87vw] rounded-3xl z-0 flex flex-col justify-center items-center gap-y-12 md:gap-y-8 py-8 md:py-16 '>
+    <div id='rules' className='bgpart mt-14 relative w-[87vw] rounded-3xl z-0 flex flex-col justify-center items-center gap-y-12 md:gap-y-8 py-8 md:py-16 '>
         <div className='absolute top-0 w-full h-full bg-black opacity-70 -z-20 rounded-3xl '></div>
         <div className='text-center -pt-4 gapy-y-4 md:gap-y-6 text-white flex flex-col items-center  '>
             <p className='p-4 sm:p-0 text-[2rem] sm:text-[3rem] font-primary font-bold max-w-[550px]   leading-[125%]    text-white'>Every step of Unnati shapes you</p>

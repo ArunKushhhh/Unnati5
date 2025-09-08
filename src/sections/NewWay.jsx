@@ -79,7 +79,7 @@ function NewWay() {
     }, { scope: containerRef })
 
     return (
-        <div ref={containerRef} className='h-screen w-full flex items-center justify-center relative overflow-hidden'>
+        <div id='clutter' ref={containerRef} className='h-screen w-full flex items-center justify-center relative overflow-hidden'>
             <div 
                 ref={togrowRef} 
                 className='relative growbg flex flex-col items-center justify-center border-0 shadow-2xl overflow-hidden w-[300px] md:w-[370px] h-[65vh] md:h-[85vh]'
