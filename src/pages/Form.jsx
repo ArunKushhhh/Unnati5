@@ -197,7 +197,7 @@ function Form() {
                  `
                }}>
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">Welcome to Aceternity</h1>
+            <h1 className="text-3xl font-bold text-white mb-2">Welcome to Unnati V</h1>
             <p className="text-gray-300">Register your team for the competition</p>
           </div>
 

@@ -37,6 +37,10 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const handleContactUs = () => {
+    window.location.href = "mailto:ecellait@gmail.com";
+  };
+
   return (
     <header className="w-full lg:w-[70%] md:mx-[15%] flex justify-between items-center px-6 lg:px-1 py-1 bg-white/80 shadow-none hover:shadow-xl transition-all duration-200 rounded-2xl sticky top-8 z-50 text-sm backdrop-blur-md">
       <div className="flex justify-center items-center gap-4">
@@ -58,7 +62,10 @@ const Navbar = () => {
         </nav>
       </div>
       <div className="flex items-center justify-center gap-4">
-        <div className="hidden md:flex bg-none hover:bg-slate-100 px-4 py-3 rounded-md transition-all duration-300 cursor-pointer font-medium">
+        <div 
+          onClick={handleContactUs}
+          className="hidden md:flex bg-none hover:bg-slate-100 px-4 py-3 rounded-md transition-all duration-300 cursor-pointer font-medium"
+        >
           Contact Us
         </div>
         <div className="h-5 w-[1px] bg-black/10"></div>
