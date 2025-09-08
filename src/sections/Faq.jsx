@@ -25,22 +25,22 @@
 
         },
         {
-          question: "Is it happening online or offline?",
+          question: "What if I don’t know coding?",
 
-          answer: "Both the rounds are offline at AIT campus.",
+          answer: "No problem! UNNATI isn’t about coding—it’s about innovative solutions. Designers, strategists, presenters, and idea-generators are welcome.",
 
-
-        },
-        {
-          question: "What kind of problem statements can we expect?",
-
-          answer: "Exciting real-world challenges spanning technology, sustainability, social impact, and innovation. The problem statements are designed to test both creativity and technical skills.",
 
         },
         {
-          question: "How many members can be there in a team?",
+          question: "Do we need to bring anything for the event?",
 
-          answer: "You can make a team of 2 to 4 members.",
+          answer: "Just bring your team and energy along.",
+
+        },
+        {
+          question: "Can team members be from different years?",
+
+          answer: "No, all members must be from the same academic year (either all FE or all SE).",
 
         },
       ]
@@ -158,7 +158,7 @@
                 Frequently Asked <br /> Questions
               </h2>
               <p className='font-secondary text-[#6a5b72] text-xl max-w-2xl mx-auto'>
-                Everything you need to know about Whimsical and how it can help your team think better together.
+                Everything you need to know about Unnati and how it can help your team think better together.
               </p>
             </div>
 

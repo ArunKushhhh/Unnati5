@@ -76,38 +76,33 @@ function Trustedbymillions() {
     });
   }, []);
 
-useEffect(() => {
-  gsap.fromTo(
-    "li",
-    {
-      y: 5,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      stagger: 0.3,
-
-      scrollTrigger: {
-        trigger: "ul",        
-        start: "top 90%",      
-        end: "bottom 20%",     
-        toggleActions: "play none none reset", 
-        markers: false,  
-        once: false, 
+  useEffect(() => {
+    gsap.fromTo(
+      "li",
+      {
+        y: 5,
+        opacity: 0,
       },
-    }
-  );
-}, []);
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.3,
 
+        scrollTrigger: {
+          trigger: "ul",
+          start: "top 90%",
+          end: "bottom 20%",
+          toggleActions: "play none none reset",
+          markers: false,
+          once: false,
+        },
+      }
+    );
+  }, []);
 
   return (
-    <div className="max-w-screen mb-32">
-      <div className="flex justify-center items-start mb-10">
-        <h3>Trusted by millions</h3>
-      </div>
-
+    <div className="max-w-screen mb-32 pt-8">
       <div className="overflow-hidden w-full">
         <div
           ref={wrapperRef}
@@ -150,7 +145,7 @@ useEffect(() => {
           College Routine:
         </h1>
         <ul className="md:text-base text-[13px] text-nowrap flex flex-col gap-2">
-          {bulletPoints.map((text, i) => ( 
+          {bulletPoints.map((text, i) => (
             <li key={i}>
               <span className="bg-pink-500 rounded-3xl inline-flex w-6 h-6 justify-center text-white mr-3 items-center">
                 x
@@ -160,7 +155,7 @@ useEffect(() => {
           ))}
         </ul>
 
-       {/*  <div className="absolute top-0 left-1/2 -translate-x-1/2 grid auto-rows-max grid-cols-[repeat(auto-fit,minmax(6rem,1fr))] max-w-[90vw] gap-4 z-10">
+        {/*  <div className="absolute top-0 left-1/2 -translate-x-1/2 grid auto-rows-max grid-cols-[repeat(auto-fit,minmax(6rem,1fr))] max-w-[90vw] gap-4 z-10">
           {imagePairs.map(([normal], i) => (
             <img
               key={i}

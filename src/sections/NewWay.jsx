@@ -91,14 +91,14 @@ function NewWay() {
                 }}
             >
                 <div ref={textRef} className='relative z-10 text-center'>
-                    <h2 className='text-4xl font-bold text-gray-800 mb-4'>
+                    <h2 className='text-4xl font-bold text-white mb-4'>
                         Escape the clutter
                     </h2>
                 </div>
                 
                 <div className='new-content absolute inset-0 flex flex-col lg:flex-row items-start  sm:justify-center lg:justify-center lg:items-center sm:gap-x-26 sm:items-center justify-center text-center z-10 opacity-0 px-12'>
                     <div className='   flex items-center justify-center'>
-                        <h1 className='main-title text-left text-5xl md:text-7xl   font-bold text-gray-800 mb-8 md:mb-0'>
+                        <h1 className='main-title text-left text-5xl md:text-7xl   font-bold text-white mb-8 md:mb-0'>
                             Life When You <br /> Participate in <br /> <span className="text-white">UNNATI </span>
                         </h1>
                     </div>
@@ -111,13 +111,13 @@ function NewWay() {
                                         key={index}
                                         className='point-item flex flex-row gap-4 justify-start items-center opacity-0'
                                     >
-                                        <div className='w-6 h-6 bg-black rounded-full flex items-center justify-center flex-shrink-0'>
-                                            <svg className='w-3 h-3 text-white text-bold' fill='currentColor' viewBox='0 0 20 20'>
+                                        <div className='w-6 h-6 bg-white rounded-full flex items-center justify-center flex-shrink-0'>
+                                            <svg className='w-3 h-3 text-black text-bold' fill='currentColor' viewBox='0 0 20 20'>
                                                 <path fillRule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clipRule='evenodd' />
                                             </svg>
                                         </div>
                                         
-                                        <p className='text-lg  text-black lg:text-gray-700 text-left text-wrap'>
+                                        <p className='text-lg  text-white text-left text-wrap'>
                                             {point.title}
                                         </p>
                                     </div>

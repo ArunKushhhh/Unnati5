@@ -7,9 +7,6 @@ function Glassbox({
   progress = 0, 
   onClick,
   icon,
-  date = "TBD",
-  time = "TBD", 
-  venue = "TBD"
 }) {
   return (
     <div 
@@ -33,20 +30,6 @@ function Glassbox({
         }`}>
           {title}
         </p>
-      </div>
-      
-      <div className='mb-3 mt-2 space-y-1'>
-        <div className={`text-xs ${
-          isActive ? 'text-gray-600' : 'text-[#d6d3d3aa]'
-        }`}>
-          <div className='flex justify-between items-center'>
-            <span>Date: {date}</span>
-            <span>Time: {time}</span>
-          </div>
-          <div>
-            <span>Venue: {venue}</span>
-          </div>
-        </div>
       </div>
       
       <div className='mb-3 flex-1'>

@@ -12,23 +12,22 @@ import Footer from "./sections/Footer";
 import Days from "./sections/Days";
 import Prizes from "./sections/Prizes";
 
-
-
-
 const App = () => {
   return (
-    <div className=" h-full flex flex-col w-full items-center overflow-x-hidden">
-      {/* <Navbar/> */}
+    <div className="relative h-full flex flex-col w-full items-center overflow-x-hidden">
+      <div className="w-full fixed top-8 left-0 z-50">
+        <Navbar />
+      </div>
       <Hero />
-      <Trustedbymillions/>
-      <NewWay/>
-      <Prizes/>
-      <Comments/>
-      <Gallery/>
-      <Rule/>
-      <Faq/>
-      <Days/>
-      <Footer/>
+      <Trustedbymillions />
+      <NewWay />
+      <Prizes />
+      <Comments />
+      <Gallery />
+      <Rule />
+      <Faq />
+      <Days />
+      <Footer />
     </div>
   );
 };

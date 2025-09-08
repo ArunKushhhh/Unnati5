@@ -65,7 +65,7 @@ const Navbar = () => {
         <Button
           label={"Register"}
           btnbg={"bg-slate-100"}
-          to={""}
+          to={"/form"}
           px={"px-5"}
           py={"py-3"}
         />
