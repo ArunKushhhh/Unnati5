@@ -22,8 +22,8 @@ const App = () => {
       <Trustedbymillions />
       <NewWay />
       <Prizes />
-      <Comments />
-      <Gallery />
+      {/* <Comments /> */}
+      {/* <Gallery /> */}
       <Rule />
       <Faq />
       <Days />
