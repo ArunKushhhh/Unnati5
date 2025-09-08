@@ -8,7 +8,7 @@ function Footer() {
       <div className="page-wrapper">
         <main className="hero-section">
           <div className="flex flex-col items-center gap-6 hero-content">
-            <h1>
+            <h1 className="text-white">
               It's time to work <br />
               differently.
             </h1>

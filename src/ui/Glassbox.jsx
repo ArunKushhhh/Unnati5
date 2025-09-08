@@ -13,7 +13,7 @@ function Glassbox({
       className={`flex flex-col min-w-[180px] w-[180px] lg:w-[245px] max-w-[245px] min-h-[120px] p-4 rounded-xl cursor-pointer transition-all duration-300 ${
         isActive 
           ? 'bg-white text-black scale-105 border border-[rgba(80,230,203,0.3)] shadow-lg' 
-          : 'bg-[rgba(15,1,26,.12)] text-[#d6d3d3aa] hover:bg-[rgba(15,1,26,.18)]'
+          : 'bg-[rgba(255,255,255,.12)] text-[#d6d3d3aa] hover:bg-[rgba(255,255,255,.18)]'
       }`}
       onClick={onClick}
     >
@@ -45,7 +45,7 @@ function Glassbox({
       }`}>
         <div 
           className={`h-1 rounded-full transition-all duration-75 ease-linear ${
-            isActive ? 'bg-[rgb(80,230,203)]' : 'bg-[rgba(80,230,203,0.5)]'
+            isActive ? 'bg-[rgb(80,230,203)]' : 'bg-[rgba(80,230,203,0.5 )]'
           }`}
           style={{ 
             width: `${progress}%`,

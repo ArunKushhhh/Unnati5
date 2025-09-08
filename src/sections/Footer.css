@@ -9,7 +9,7 @@ body {
 }
 
 .page-wrapper {
-    background-image: url('https://whimsical.com/_next/static/media/l@3000x2501@1x.bf32d2c4.webp');
+    background-image: url('/stillbg.webp');
     background-color: #f0f2ff;
     background-size: cover;
     background-position: center top;
