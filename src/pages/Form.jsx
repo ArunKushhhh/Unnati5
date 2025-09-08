@@ -13,7 +13,8 @@ function Form() {
     member1Contact: '',
     member2Name: '',
     member2RegNo: '',
-    member2Contact: ''
+    member2Contact: '',
+    team: 'Team A' 
   });
 
   const [loading, setLoading] = useState(false)
@@ -39,7 +40,8 @@ function Form() {
       { field: 'leaderContact', label: 'Leader Contact Number' },
       { field: 'member1Name', label: 'Member 1 Name' },
       { field: 'member1RegNo', label: 'Member 1 Registration Number' },
-      { field: 'member1Contact', label: 'Member 1 Contact Number' }
+      { field: 'member1Contact', label: 'Member 1 Contact Number' },
+      { field: 'team', label: 'Team Category' }
     ]
 
     for (const { field, label } of requiredFields) {
@@ -142,7 +144,8 @@ function Form() {
           member1Contact: '',
           member2Name: '',
           member2RegNo: '',
-          member2Contact: ''
+          member2Contact: '',
+          team: 'Team A' 
         })
       }
     } catch (error) {
@@ -403,6 +406,28 @@ function Form() {
                   className="w-full px-4 py-3 bg-white/5 backdrop-blur-md border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400/60 focus:ring-2 focus:ring-blue-400/30 transition-all duration-300 focus:shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:bg-white/10"
                   placeholder="Enter contact number"
                 />
+              </div>
+            </div>
+
+
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-white border-b border-blue-400/40 pb-2">Team Reference</h3>
+              
+              <div>
+                <label className="block text-white text-sm font-medium mb-2">
+                  Select Team <span className="text-red-400">*</span>
+                </label>
+                <select
+                  name="team"
+                  value={formData.team}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-white/5 backdrop-blur-md border border-white/20 rounded-lg text-white focus:outline-none focus:border-blue-400/60 focus:ring-2 focus:ring-blue-400/30 transition-all duration-300 focus:shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:bg-white/10"
+                >
+                  <option value="Team A" className="bg-[#11001b] text-white">Team A</option>
+                  <option value="Team B" className="bg-[#11001b] text-white">Team B</option>
+                </select>
+                
               </div>
             </div>
 
