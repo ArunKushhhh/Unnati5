@@ -209,8 +209,8 @@ const Prizes = () => {
           Prizes...
         </h1>
         <h4 className="font-secondary text-white max-w-full lg:max-w-72 text-sm md:text-base lg:ml-24 mx-auto lg:mx-0">
-          From brainstorm to launch—create, plan, and communicate in one
-          interconnected workspace.
+          From cash prizes to exclusive opportunities,
+          we offer rewards that make your victory even more memorable.
         </h4>
       </div>
 
