@@ -232,8 +232,7 @@ function Faq() {
                   </h3>
 
                   <p className="text-white font-secondary font-medium mb-10 leading-relaxed text-xl max-w-md mx-auto">
-                    Can't find the answer you're looking for? Our support team
-                    is here to help you get the most out of Whimsical.
+                    Can't find the answer you're looking for? Our Team at I&E Cell team is always here to assist you with any queries or concerns.
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-4">
