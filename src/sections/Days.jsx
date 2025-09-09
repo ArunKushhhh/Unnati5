@@ -8,7 +8,7 @@ function Days() {
       <div className="container">
         <div className="main-text">
           <span className="no-wrap-line">
-            Stuck in the cycle of thoery
+            Stuck in the cycle of theory
             <span className="icon-wrapper">
               <img
                 src="https://whimsical.com/_next/static/media/calendar@2x.5dfa0412.png"
@@ -30,7 +30,7 @@ function Days() {
           </span>
           <br />
           <span className="no-wrap-line">
-            Unnati challenges
+            UNNATI challenges
             <span className="icon-wrapper">
               <img
                 src="https://whimsical.com/_next/static/media/clock@2x.83a6a7d4.png"
@@ -49,7 +49,7 @@ function Days() {
           <br />
         </div>
         <Link to={"/form"} className="cta-link">
-          Rise above with Unnati. Register Now!
+          Rise above with UNNATI . Register Now!
           <span className="icon-wrapper last-wrapper">
             <img
               className="last-icon"
