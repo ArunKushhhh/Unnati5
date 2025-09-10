@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { images } from "../assets/images";
-import OracleLogo from "../assets/oracle-2-logo-svgrepo-com.svg";
+
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -110,33 +110,33 @@ function Trustedbymillions() {
           ref={wrapperRef}
           className="companies-wrapper flex gap-20 text-2xl text-gray-300 whitespace-nowrap"
         >
-          <div><img src={OracleLogo} alt="ORACLE" className="h-10 w-auto" /></div>
-          <div>KLAVIYA</div>
-          <div>MERCADI LIBRE</div>
-          <div>NEW RELIC</div>
-          <div>ONE MEDICAL</div>
-          <div>PENDO</div>
-          <div>RETOOL</div>
-          <div>RIPPLING</div>
-          <div>VERCEL</div>
+        
+          <div>AMUL</div>
+          <div>BLINKIT</div>
+          <div>APPLE</div>
+          <div>ZOMATO</div>
+          <div>INSTAMART</div>
           <div>AMAZON</div>
-          <div>ANTHROPIC</div>
-          <div>HASHICORP</div>
-          <div>INTERCOM</div>
+          <div>COCA COLA</div>
+          <div>PIZZAHUT</div>
+          <div>INTEL</div>
+          <div>STARBUCKS</div>
+          <div>DABUR</div>
+          <div>COSCO</div>
 
-          <div>INVISIBLE</div>
-          <div>KLAVIYA</div>
-          <div>MERCADI LIBRE</div>
-          <div>NEW RELIC</div>
-          <div>ONE MEDICAL</div>
-          <div>PENDO</div>
-          <div>RETOOL</div>
-          <div>RIPPLING</div>
-          <div>VERCEL</div>
-          <div>AMAZON</div>
-          <div>ANTHROPIC</div>
-          <div>HASHICORP</div>
-          <div>INTERCOM</div>
+          <div>JBL</div>
+          <div>ADIDAS</div>
+          <div>INDIGO</div>
+          <div>MAKE MY TRIP</div>
+          <div>REDBULL</div>
+          <div>MAGGI</div>
+          <div>NETFLIX</div>
+          <div>SKYBAGS</div>
+          <div>ZUDIO</div>
+          <div>DOMINOS</div>
+          <div>OLA</div>
+          <div>BOAT</div>
+          <div>MONSTER</div>
         </div>
       </div>
 
