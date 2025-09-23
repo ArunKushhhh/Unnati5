@@ -22,7 +22,7 @@ const App = () => {
       <Trustedbymillions />
       <NewWay />
       <Prizes />
-      {/* <Comments /> */}
+      <Comments />
       {/* <Gallery /> */}
       <Rule />
       <Faq />
