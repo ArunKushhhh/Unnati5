@@ -16,7 +16,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Link } from "react-router-dom";
 import Button from "../ui/Button";
-import Details from "../components/Details";
+import { images } from "../assets/images";
+import brandBattleSvg from "../assets/herodetail/brand-battle.svg";
+import ceoBoardSvg from "../assets/herodetail/ceo-board.svg";
+import ceoPresentationSvg from "../assets/herodetail/ceo-presentation.svg";
 
 function Hero() {
   const divRef = useRef(null);
@@ -27,24 +30,103 @@ function Hero() {
   const intervalRef = useRef(null);
   const progressIntervalRef = useRef(null);
 
+  // Shared details for Round 1 (both variations)
+  const round1Details = (
+    <div className="p-4 h-full flex flex-col justify-center items-center text-gray-800">
+      {/* Header */}
+      <div className="text-center mb-6">
+        <h3 className="text-xl font-bold text-blue-600 mb-1">Round 1: Brand Battle</h3>
+        <p className="text-sm text-gray-600">Two rival brands. One stage. One winner.</p>
+      </div>
+
+      {/* Main Brand Battle SVG */}
+      <div className="mb-6">
+        <img src={brandBattleSvg} alt="Brand Battle" className="w-32 h-32 mx-auto" />
+      </div>
+
+      {/* Key Points */}
+      <div className="grid grid-cols-2 gap-3 w-full max-w-md">
+        <div className="bg-blue-50 p-3 rounded-lg text-center">
+          <img src={images.image4} alt="Pitch" className="w-8 h-8 mx-auto mb-1" />
+          <h4 className="font-bold text-blue-700 text-xs">Pitch Battle</h4>
+        </div>
+        <div className="bg-purple-50 p-3 rounded-lg text-center">
+          <img src={images.image5} alt="Compare" className="w-8 h-8 mx-auto mb-1" />
+          <h4 className="font-bold text-purple-700 text-xs">Brand Compare</h4>
+        </div>
+        <div className="bg-green-50 p-3 rounded-lg text-center">
+          <img src={images.image6} alt="Audience" className="w-8 h-8 mx-auto mb-1" />
+          <h4 className="font-bold text-green-700 text-xs">Audience Appeal</h4>
+        </div>
+        <div className="bg-orange-50 p-3 rounded-lg text-center">
+          <img src={images.image7} alt="Strategy" className="w-8 h-8 mx-auto mb-1" />
+          <h4 className="font-bold text-orange-700 text-xs">Win Strategy</h4>
+        </div>
+      </div>
+    </div>
+  );
+
   const tabs = [
     {
       title: "Round 1: Brand Battle",
       description: "Two rival brands. One stage. One winner.",
       icon: <Swords />,
       screen: <GlassScreen1 variant="projects" />,
+      details: round1Details,
     },
     {
       title: "Round 1: Brand Battle",
       description: "Pitch, compare, and roast your way to victory.",
       icon: <Swords />,
       screen: <GlassScreen1 variant="documents" />,
+      details: round1Details, // Same details for both Round 1 variations
     },
     {
       title: "Round 2: CEO in Trouble",
       description: "Think like a CEO, solve real challenges.",
       icon: <BarChart3 />,
       screen: <GlassScreen1 variant="analytics" />,
+      details: (
+        <div className="p-4 h-full flex flex-col justify-center items-center text-gray-800">
+          {/* Header */}
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-bold text-red-600 mb-1">Round 2: CEO in Trouble</h3>
+            <p className="text-sm text-gray-600">Think like a CEO, solve real challenges.</p>
+          </div>
+
+          {/* CEO SVGs Display */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="flex flex-col items-center">
+              <img src={ceoBoardSvg} alt="CEO Board Meeting" className="w-16 h-16 mb-1" />
+              <p className="text-xs text-gray-600 text-center">Board Crisis</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <img src={ceoPresentationSvg} alt="CEO Presentation" className="w-16 h-16 mb-1" />
+              <p className="text-xs text-gray-600 text-center">Strategic Presentation</p>
+            </div>
+          </div>
+
+          {/* Key Points */}
+          <div className="grid grid-cols-2 gap-3 w-full max-w-md">
+            <div className="bg-red-50 p-3 rounded-lg text-center">
+              <img src={images.image11} alt="Financial" className="w-8 h-8 mx-auto mb-1" />
+              <h4 className="font-bold text-red-700 text-xs">Financial Crisis</h4>
+            </div>
+            <div className="bg-yellow-50 p-3 rounded-lg text-center">
+              <img src={images.image12} alt="Team" className="w-8 h-8 mx-auto mb-1" />
+              <h4 className="font-bold text-yellow-700 text-xs">Team Leadership</h4>
+            </div>
+            <div className="bg-indigo-50 p-3 rounded-lg text-center">
+              <img src={images.image1c} alt="Strategy" className="w-8 h-8 mx-auto mb-1" />
+              <h4 className="font-bold text-indigo-700 text-xs">Strategic Pivot</h4>
+            </div>
+            <div className="bg-green-50 p-3 rounded-lg text-center">
+              <img src={images.image2c} alt="Communication" className="w-8 h-8 mx-auto mb-1" />
+              <h4 className="font-bold text-green-700 text-xs">Clear Communication</h4>
+            </div>
+          </div>
+        </div>
+      ),
     },
   ];
 
@@ -256,7 +338,21 @@ function Hero() {
           </div>
         </div>
 
-        <Details />
+        <div className="w-full hidden sm:flex justify-center items-center">
+          <div className="relative h-[600px] w-[90%] lg:w-1/2 z-10">
+            <div className="w-full h-full bg-white/14 rounded-3xl py-4 px-4 flex flex-col gap-4">
+              <div className="flex gap-1.5"> 
+                <div className="w-4 h-4 rounded-full bg-red-400"></div>
+                <div className="w-4 h-4 rounded-full bg-yellow-400"></div>
+                <div className="w-4 h-4 rounded-full bg-green-400"></div>
+              </div>
+              <div className="w-full h-full bg-white rounded-2xl">
+                {tabs[activeIndex].details}
+              </div>
+            </div>
+            <div className="absolute w-full h-full bg-blue-500/40 blur-3xl -z-10 -top-16 -left-32"></div>
+          </div>
+        </div>
       </div>
     </div>
   );

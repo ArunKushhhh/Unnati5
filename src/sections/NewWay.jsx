@@ -29,7 +29,7 @@ function NewWay() {
                 trigger: containerRef.current,
                 pin: containerRef.current,
                 start: 'top top',
-                end: '+=400%',
+                end: '+=300%',
                 scrub: 1,
                 
                 anticipatePin: 1,
@@ -44,13 +44,13 @@ function NewWay() {
             borderTopRightRadius: '0px',
             borderBottomLeftRadius: '0px',
             borderBottomRightRadius: '0px',
-            duration: 0.3,
+            duration: 0.15,
             ease: "power2.out"
         })
         
         .to(textRef.current, {
             opacity: 0,
-            duration: 0.2
+            duration: 0.1
         }, "-=0.1")
         
         .fromTo('.new-content', {
@@ -59,7 +59,7 @@ function NewWay() {
         }, {
             opacity: 1,
             y: 0,
-            duration: 0.3,
+            duration: 0.1,
             ease: "power2.out"
         })
         
@@ -71,8 +71,8 @@ function NewWay() {
             opacity: 1,
             x: 0,
             scale: 1,
-            duration: 0.4,
-            stagger: 0.1,
+            duration: 0.05,
+            stagger: 0.05,
             ease: "power2.out"
         }, "-=0.2");
 

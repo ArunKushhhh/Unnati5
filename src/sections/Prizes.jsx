@@ -200,7 +200,7 @@ const Prizes = () => {
     <div
       id="prizes"
       ref={mainContainerRef}
-      className="bg-[#11001b] w-full flex flex-col gap-12 md:gap-24 lg:gap-72 justify-start items-center pt-12 md:pt-16 lg:pt-24 px-4 md:px-8 pb-8 sm:pb-0"
+      className="bg-[#11001b] w-full flex flex-col gap-12 md:gap-24 lg:gap-72 justify-start items-center pt-12 md:pt-16 lg:pt-24 px-4 md:px-8 pb-8 sm:pb-0 overflow-y-hidden"
       style={{ height: window.innerWidth >= 1024 ? "500vh" : "auto" }}
     >
       {/* Header Section */}
@@ -266,7 +266,7 @@ const Prizes = () => {
               </div>
 
               {/* Main content div */}
-              <div className="w-full h-full bg-gradient-to-r from-black to-[#11011d] flex flex-col gap-12 justify-center items-center rounded-tl-2xl">
+              <div className="w-full h-full bg-gradient-to-r from-black to-[#11011d] flex flex-col gap-12 justify-center items-center rounded-tl-2xl overlfow-">
                 <div
                   ref={prizeBoxesRef}
                   className="w-full flex gap-6 justify-center items-center"
